@@ -1,3 +1,12 @@
+Project Category:  Web Development
+Members: 
+Arenio, Lenneth P. 
+Olayvar, Ricalyn O.
+Paddit, Alexia Kate 
+Taneo, Jezelle Mae
+
+Instructor: Ma'am Divine Caabay
+
 # Face Recognition Attendance
 
 A lightweight Flask-based face recognition attendance system using OpenCV. It provides: web login (admin/employee), admin dashboard (train, start recognition, export, sign-up), and a simple CSV-backed attendance log.
@@ -72,4 +81,4 @@ Open http://127.0.0.1:5000 in your browser and log in with the default admin acc
 - Add unit/integration tests and a `requirements.txt` or `pyproject.toml` for reproducible installs.
 - Add a `Dockerfile` for containerized demos and consistent environments.
 
-If you want, I can add a `requirements.txt`, create a `Dockerfile`, or add an example `README` section showing how to record a short demo video of the live recognition window.
+
