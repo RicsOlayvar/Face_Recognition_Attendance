@@ -1,7 +1,8 @@
 import cv2
 import os
+import sys
 
-name = input("Enter employee name: ")
+name = sys.argv[1] if len(sys.argv) > 1 else input("Enter employee name: ")
 path = f"dataset/{name}"
 os.makedirs(path, exist_ok=True)
 

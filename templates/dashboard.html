@@ -1,21 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="page-shell">
+        <header class="dashboard-header">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Welcome back, <strong>{{ username }}</strong>.</p>
+            </div>
+            <a class="secondary-btn" href="{{ url_for('logout') }}">Logout</a>
+        </header>
 
-<h1>Admin Dashboard</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
 
-<button onclick="location.href='/start-recognition'">
-    Start Face Recognition
-</button>
+        <div class="dashboard-status">
+            <p><strong>Last action:</strong> {{ last_action }}</p>
+            <div class="status-list">
+                <span>Recognition: {{ status.recognition }}</span>
+                <span>Training: {{ status.train }}</span>
+                <span>Export: {{ status.export }}</span>
+                <span>Sign-up: {{ status.register }}</span>
+            </div>
+        </div>
 
-<br><br>
+        <div class="dashboard-log-panel">
+            <div class="log-block">
+                <h3>Training output</h3>
+                <pre>{{ train_log or 'No training output yet.' }}</pre>
+            </div>
+            <div class="log-block">
+                <h3>Recognition output</h3>
+                <pre>{{ recognition_log or 'No recognition output yet.' }}</pre>
+            </div>
+        </div>
 
-<button onclick="location.href='/train'">
-    Train Model
-</button>
-
+        <div class="dashboard-grid">
+            <div class="action-card">
+                <h2>Face Recognition</h2>
+                <p>Start the live recognition session to mark attendance.</p>
+                <a class="primary-btn" href="{{ url_for('start_recognition') }}">Start Recognition</a>
+            </div>
+            <div class="action-card">
+                <h2>Train Model</h2>
+                <p>Retrain the face recognition model with updated data.</p>
+                <a class="primary-btn" href="{{ url_for('train') }}">Train Model</a>
+            </div>
+            <div class="action-card">
+                <h2>Export Attendance</h2>
+                <p>Download attendance records as an Excel file.</p>
+                <a class="primary-btn" href="{{ url_for('export') }}">Export</a>
+            </div>
+            <div class="action-card">
+                <h2>Sign Up Employee</h2>
+                <p>Add a new employee face record by opening the camera capture.</p>
+                <a class="primary-btn" href="{{ url_for('register') }}">Sign Up</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

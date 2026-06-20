@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="dashboard-header">
+            <div>
+                <h1>Employee Dashboard</h1>
+                <p>Welcome, <strong>{{ username }}</strong>.</p>
+            </div>
+            <a class="secondary-btn" href="{{ url_for('logout') }}">Logout</a>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-status">
+            <p><strong>Last action:</strong> {{ last_action }}</p>
+        </div>
+
+        <div class="login-card">
+            <h2>Your Attendance Records</h2>
+            {% if records %}
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record.Date }}</td>
+                                <td>{{ record['Time In'] }}</td>
+                                <td>{{ record['Time Out'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No attendance records found yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

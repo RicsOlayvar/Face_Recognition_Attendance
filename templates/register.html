@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="dashboard-header">
+            <div>
+                <h1>Employee Sign-Up</h1>
+                <p>Enter the employee name to start face registration.</p>
+            </div>
+            <a class="secondary-btn" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="login-card">
+            <form method="POST" class="login-form">
+                <label for="name">Employee Name</label>
+                <input id="name" type="text" name="name" placeholder="Enter employee name" required>
+
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" placeholder="Set a password" required>
+
+                <button type="submit" class="primary-btn">Start Sign-Up</button>
+            </form>
+
+            <div class="hint">
+                Default role: <strong>employee</strong>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

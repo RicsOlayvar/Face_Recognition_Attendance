@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\CLienT\Desktop\cse\Face_Recognition_Attendance\train.py", line 5, in <module>
+    recognizer = cv2.face.LBPHFaceRecognizer_create()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cv2.face' has no attribute 'LBPHFaceRecognizer_create'
